@@ -12,6 +12,22 @@ describe('Formularios', () => {
     expect(componente.form.contains('email')).toBeTruthy();
     expect(componente.form.contains('password')).toBeTruthy();
   });
-  // it('', () => {});
-  // it('', () => {});
+
+  it('El email debe ser obligatorio', () => {
+    const control = componente.form.get('email');
+
+    if (control) {
+      control.setValue('');
+      expect(control.valid).toBeFalsy();
+    }
+  });
+
+  it('El email debe ser un correo válido', () => {
+    const control = componente.form.get('email');
+
+    if (control) {
+      control.setValue('tony@g.c');
+      expect(control.valid).toBeTruthy();
+    }
+  });
 });
