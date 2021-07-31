@@ -1,4 +1,4 @@
-import { from, of } from 'rxjs';
+import { from, of, EMPTY } from 'rxjs';
 
 import { MedicosComponent } from './medicos.component';
 import { MedicosService } from './medicos.service';
@@ -6,7 +6,7 @@ import { MedicosService } from './medicos.service';
 describe('MedicosComponent', () => {
   let componente: MedicosComponent;
 
-  const spy = jasmine.createSpyObj({ get: of({}) });
+  const spy = jasmine.createSpyObj('HttpClient', { get: of({}) });
   const servicio = new MedicosService(spy);
 
   beforeEach(() => {
@@ -23,5 +23,15 @@ describe('MedicosComponent', () => {
     componente.ngOnInit();
     expect(componente.medicos?.length).toBeGreaterThan(0);
     console.log(componente.medicos);
+  });
+
+  it('Debe de llamar al servidor para agregar a un médico', () => {
+    const espia = spyOn(servicio, 'agregarMedico').and.callFake(() => {
+      return EMPTY;
+    });
+
+    componente.agregarMedico();
+
+    expect(espia).toHaveBeenCalled();
   });
 });
