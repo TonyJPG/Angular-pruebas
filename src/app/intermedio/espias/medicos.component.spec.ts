@@ -3,7 +3,7 @@ import { from, of, EMPTY } from 'rxjs';
 import { MedicosComponent } from './medicos.component';
 import { MedicosService } from './medicos.service';
 
-describe('MedicosComponent', () => {
+describe('MedicosComponent (espias)', () => {
   let componente: MedicosComponent;
 
   const spy = jasmine.createSpyObj('HttpClient', { get: of({}) });
@@ -33,5 +33,16 @@ describe('MedicosComponent', () => {
     componente.agregarMedico();
 
     expect(espia).toHaveBeenCalled();
+  });
+
+  it('Debe agregar un nuevo médico al arreglo de médicos', () => {
+    const medico = { id: 1, nombre: 'Juan' };
+    const espia = spyOn(servicio, 'agregarMedico').and.returnValue(
+      from([medico])
+    );
+
+    componente.agregarMedico();
+
+    expect(componente.medicos.indexOf(medico)).toBeGreaterThanOrEqual(0);
   });
 });
