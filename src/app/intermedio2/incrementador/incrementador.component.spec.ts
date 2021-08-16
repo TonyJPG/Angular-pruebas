@@ -39,4 +39,27 @@ describe('Incremendator Component', () => {
 
     expect(elem.value).toBe('55');
   });
+
+  it('Debe incrementar/decrementar 5 con un click en el botón', () => {
+    const botones = fixture.debugElement.queryAll(By.css('.btn-primary'));
+
+    botones[0].triggerEventHandler('click', null);
+    expect(component.progreso).toBe(45);
+
+    botones[1].triggerEventHandler('click', null);
+    expect(component.progreso).toBe(50);
+  });
+
+  it('Debe mostrar el progreso en el h3, con el valor correcto', () => {
+    const botones = fixture.debugElement.queryAll(By.css('.btn-primary'));
+    const elem: HTMLElement = fixture.debugElement.query(
+      By.css('h3')
+    ).nativeElement;
+
+    botones[0].triggerEventHandler('click', null);
+
+    fixture.detectChanges();
+
+    expect(elem.innerHTML).toContain('45');
+  });
 });
