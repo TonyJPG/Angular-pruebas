@@ -22,7 +22,6 @@ describe('MedicosComponent (espias)', () => {
 
     componente.ngOnInit();
     expect(componente.medicos?.length).toBeGreaterThan(0);
-    console.log(componente.medicos);
   });
 
   it('Debe de llamar al servidor para agregar a un médico', () => {
