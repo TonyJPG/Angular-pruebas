@@ -12,6 +12,8 @@ import { IncrementadorComponent } from './intermedio2/incrementador/incrementado
 import { MedicoService } from './intermedio2/medico/medico.service';
 
 import { RUTAS } from './avanzado/rutas/app.routes';
+import { NavbarComponent } from './avanzado/navbar/navbar.component';
+import { RouterMedicoComponent } from './avanzado/router-medico/router-medico.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { RUTAS } from './avanzado/rutas/app.routes';
     MedicoComponent,
     HospitalComponent,
     IncrementadorComponent,
+    NavbarComponent,
+    RouterMedicoComponent,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(RUTAS)],
   providers: [MedicoService],
